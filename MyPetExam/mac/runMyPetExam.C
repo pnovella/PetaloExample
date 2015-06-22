@@ -13,9 +13,9 @@
   MyPetExam* algo1 = new MyPetExam(gate::NORMAL,"algo1");
   
   gate::Centella::instance(gate::NORMAL);
-  gate::Centella::instance()->addInputFile("input_dst.root");
+  gate::Centella::instance()->addInputFile("../../../data/prod1.next.root");
   gate::Centella::instance()->addOutputFile("output_dst.root");
-  gate::Centella::instance()->setNevents(10);
+  gate::Centella::instance()->setNevents(100);
   gate::Centella::instance()->saveEvents(true);
   gate::Centella::instance()->saveHistos(true);
   gate::Centella::instance()->addAlgo("my_algo1",algo1);

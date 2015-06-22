@@ -27,8 +27,10 @@ bool MyPetExam::initialize(){
   _m.message("Intializing algorithm",this->getAlgoLabel(),gate::NORMAL);
   
   gate::Centella::instance()
-    ->hman()->h1(this->alabel("EvtID"),"EvtID",10,0,100);
-
+    ->hman()->h1(this->alabel("EvtID"),"EvtID",10000,0,10000);
+  
+ 
+  
   return true;
 
 }
@@ -53,7 +55,23 @@ bool MyPetExam::finalize(){
 //==========================================================================
 
   _m.message("Finalising algorithm",this->getAlgoLabel(),gate::NORMAL);
+
+  gate::Run* run = &gate::Centella::instance()->getRun();
+
+  run->find_dstore("num_events");
+ 
+  int nevt = gate::int_from_string(run->fetch_sstore("num_events"));
   
+  _m.message("Number of generated events in file:",nevt,gate::NORMAL);
+
+  run->store("MyIntVar",3);
+  run->store("MyDoubleVar",3.14);
+  run->store("MyStrVar","3.14");
+
+  store("MyIntVar",3);
+  store("MyDoubleVar",3.14);
+  store("MyStrVar","3.14");
+
   return true;
 
 }
