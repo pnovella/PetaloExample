@@ -1,0 +1,90 @@
+
+        
+#####     ------ Parameter File -----       ###
+#                                             #  
+#   use:                                      #
+#                                             #
+#     GROUP NAME TYPE VALUE                   #
+#                                             #
+#     where TYPE is:                          #
+#                                             #
+#          I  --> INTEGER,                    #
+#          D  --> FLOAT                       #
+#          S  --> STRING                      #
+#          IV --> INTEGER VECTOR              #
+#          DV --> FLOAT VECTOR                #
+#          SV --> STRING VECTOR               #
+#                                             #
+#     For vectors:  TYPE == vector length     #
+#     Each element is decleared in new line   #
+#                                             #
+###############################################
+
+#--------- PATHS with modules to be used -------#
+CNTJob PATHS SV 1
+./../algos/
+
+#--------- C++ libs to be loaded -------#
+CNTJob LIBS SV 1
+./../../MyCppPetExam/lib/libMyPetExam.so
+
+#--------- DATA -------#
+CNTJob INPUT_DATA SV 1
+../../../data/prod1.next.root
+
+#------ SAVE EVENTS IN OUTPUT FILE ----------# 
+CNTJob SAVE I 0
+
+#---------- NUMBER OF EVENTS TO ANALYZE ----------#
+CNTJob NEVENTS I 100
+
+#---------- FIRST EVENT TO ANALYZE ----------#
+CNTJob FEVENT I 0
+
+#---------- Print status messages after NDEBUG events ----------#
+CNTJob NDEBUG I 10
+
+#---------- VERBOSITY LEVEL ----------#
+CNTJob LEVEL I 1
+
+#--------- ALGORITHMS-------#
+CNTJob ALGOS SV 2
+MyPyPetExample
+MyCppPetExample
+
+#--------- INPUT DATA FORMAT -------#
+CNTJob READER S gateReader
+
+#--------- OUPUT DATA FORMAT -------#
+CNTJob WRITER S gateWiter
+
+#------------- log file -------------#
+CNTJob LOG I 1
+CNTJob FLOG S MyPyPetExam.log
+
+#---------- histogram file ----------#
+CNTJob HISTOS 1
+CNTJob FHISTOS S MyPyPetExam_histos.root
+
+#---------- histogram file ----------#
+CNTJob TREES 0
+CNTJob FTREES S MyPyPetExam_trees.root
+
+#---------- documentation tex file ----------#
+# latex_gen class can be used in your algorithm
+CNTJob DOC 0
+CNTJob FDOC S MyPyPetExam.tex
+
+#---------- output ps file for histoManager plots ----------#
+CNTJob FPS S MyPyPetExam.ps
+
+#---------- open a TBrowser at the end of the run ----------#
+CNTJob BROWSER I 0
+
+#---------- Algorithm parameters ----------#
+MyPyPetExample MyIntPar I 3
+
+#---------- Algorithm parameters ----------#
+MyCppPetExample TYPE S MyPetExam
+MyCppPetExample LAN S c++
+
